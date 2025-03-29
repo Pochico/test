@@ -1,0 +1,206 @@
+.skip-selection-step {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.title {
+    font-size: 32px;
+    text-align: center;
+    margin: 20px 0 0 0;
+}
+
+.subtitle {
+    font-size: 18px;
+    text-align: center;
+    color: #999;
+    margin: 0 0 20px 0;
+}
+
+.skips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.skip-card {
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid transparent;
+}
+
+.skip-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.skip-card.selected {
+    border-color: #1a56db;
+}
+
+.skip-image-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.skip-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.skip-size-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #1a56db;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.skip-details {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.skip-title {
+    font-size: 24px;
+    margin: 0;
+}
+
+.skip-period {
+    color: #999;
+    margin: 0;
+}
+
+.skip-price {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    margin: 10px 0;
+}
+
+.price-amount {
+    font-size: 28px;
+    font-weight: bold;
+    color: #1a56db;
+}
+
+.price-period {
+    color: #999;
+}
+
+.select-skip-button {
+    background-color: transparent;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.select-skip-button:hover {
+    background-color: #1a1a1a;
+    border-color: #1a56db;
+}
+
+.skip-card.selected .select-skip-button {
+    background-color: #1a56db;
+    border-color: #1a56db;
+}
+
+.loading,
+.error-message {
+    padding: 40px;
+    text-align: center;
+    font-size: 18px;
+    color: #999;
+}
+
+.error-message {
+    color: #e74c3c;
+}
+
+.retry-button {
+    background-color: #1a56db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.back-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 25px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.continue-button {
+    background-color: #1a56db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.continue-button:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+}
+
+.arrow {
+    margin-left: 8px;
+}
+
+@media (max-width: 768px) {
+    .skips-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+}
