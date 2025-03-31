@@ -1,26 +1,18 @@
 "use client"
 
 import { useState } from "react"
-import "./heavyWasteModal.css"
+import "../styles/heavyWasteModal.css"
 import { InfoNotice } from "./InfoNotice"
 import { WarningNotice } from "./WarningNotice"
-
-const WasteOption = ({ id, title, description, selected, onChange }) => {
-    return (
-        <div className={`waste-option ${selected ? "selected" : ""}`} onClick={() => onChange(id)}>
-            <div className="waste-option-checkbox">
-                <input type="checkbox" id={id} checked={selected} onChange={() => onChange(id)} />
-            </div>
-            <div className="waste-option-content">
-                <h3 className="waste-option-title">{title}</h3>
-                <p className="waste-option-description">{description}</p>
-            </div>
-        </div>
-    )
-}
+import { useAppState } from "../context/AppStateContext"
+import { PlasterboardDisposalModal } from "../components/PlasterboardDisposalModal"
+import { WasteOption } from "./WasteOption"
 
 export const HeavyWasteModal = ({ onClose, onContinue }) => {
-    const [selectedOptions, setSelectedOptions] = useState([])
+    const { state, actions } = useAppState()
+    const [selectedOptions, setSelectedOptions] = useState(state.wasteTypes.heavy || [])
+    const [showPlasterboardModal, setShowPlasterboardModal] = useState(false)
+    const [plasterboardOption, setPlasterboardOption] = useState(null)
 
     const wasteOptions = [
         { id: "soil", title: "Soil", description: "Including topsoil and subsoil" },
@@ -40,7 +32,30 @@ export const HeavyWasteModal = ({ onClose, onContinue }) => {
         }
     }
 
-    const handleContinue = () => {
+    const handleHeavyWasteContinue = () => {
+        if (selectedOptions.length > 0) {
+            setShowPlasterboardModal(true)
+        } else {
+            onContinue(selectedOptions)
+        }
+    }
+
+    const handlePlasterboardModalClose = () => {
+        setShowPlasterboardModal(false)
+    }
+
+    const handlePlasterboardModalContinue = (option) => {
+        setPlasterboardOption(option)
+        setShowPlasterboardModal(false)
+
+        // Update the payment with the plasterboard disposal fee
+        if (option.price > 0) {
+            actions.updatePayment({
+                plasterboardFee: option.price,
+            })
+        }
+
+        // Continue with the selected heavy waste options
         onContinue(selectedOptions)
     }
 
@@ -52,7 +67,10 @@ export const HeavyWasteModal = ({ onClose, onContinue }) => {
                 </div>
 
                 <div className="modal-content">
-                    <WarningNotice title='Important Notice' body='Heavy waste types have specific requirements and restrictions. Some skip sizes may not be available for heavy waste disposal.' />
+                    <WarningNotice
+                        title="Important Notice"
+                        body="Heavy waste types have specific requirements and restrictions. Some skip sizes may not be available for heavy waste disposal."
+                    />
 
                     <p className="selection-instruction">Please select any heavy waste types you need to dispose of:</p>
 
@@ -69,18 +87,29 @@ export const HeavyWasteModal = ({ onClose, onContinue }) => {
                         ))}
                     </div>
 
-                    <InfoNotice title='Skip Size Restrictions' body='For safety reasons, heavy waste can only be disposed of in skips up to 8 yards. Larger skips will not be available if heavy waste is selected.' />
+                    <InfoNotice
+                        title="Skip Size Restrictions"
+                        body="For safety reasons, heavy waste can only be disposed of in skips up to 8 yards. Larger skips will not be available if heavy waste is selected."
+                    />
                 </div>
 
                 <div className="modal-footer">
                     <button className="cancel-button" onClick={onClose}>
                         Cancel
                     </button>
-                    <button className="continue-button" onClick={handleContinue}>
+                    <button className="continue-button" onClick={handleHeavyWasteContinue}>
                         Continue
                     </button>
                 </div>
             </div>
+
+            {showPlasterboardModal && (
+                <PlasterboardDisposalModal
+                    onClose={handlePlasterboardModalClose}
+                    onContinue={handlePlasterboardModalContinue}
+                />
+            )}
         </div>
     )
 }
+

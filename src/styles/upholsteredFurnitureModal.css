@@ -1,0 +1,115 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-container {
+    background-color: #121212;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.furniture-modal .modal-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #1a1a1a;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.furniture-modal .modal-header h2 {
+    font-size: 22px;
+    margin: 0;
+    color: #fff;
+}
+
+.furniture-modal .modal-content {
+    padding: 20px;
+}
+
+.furniture-modal .info-box {
+    background-color: #1a2035;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.furniture-modal .info-box h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #3b82f6;
+}
+
+.furniture-modal .pops-info {
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.furniture-modal .pops-info p {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #ccc;
+}
+
+.furniture-modal .pops-info ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.furniture-modal .pops-info li {
+    margin-bottom: 8px;
+    color: #ccc;
+}
+
+.furniture-modal .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.furniture-modal .secondary-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.furniture-modal .primary-button {
+    background-color: #d97706;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.furniture-modal .primary-button:hover {
+    background-color: #b45309;
+}
+
+.furniture-modal .secondary-button:hover {
+    background-color: #444;
+}

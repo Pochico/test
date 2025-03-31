@@ -1,7 +1,5 @@
-"use client"
-
 import { useState } from "react"
-import TitleGroup from "../components/TitleGroup"
+import { TitleGroup } from "../components/TitleGroup"
 
 export const PostcodeStep = ({ onSubmit, initialData }) => {
     const [isExpanded, setIsExpanded] = useState(!!initialData.postcode)
@@ -15,7 +13,6 @@ export const PostcodeStep = ({ onSubmit, initialData }) => {
 
     const allSuggestions = ["LE10 1SH"]
 
-    // Todo: add search icon, add image, add functionality to navigate from breadcrumbs
     const handlePostcodeChange = (e) => {
         const value = e.target.value
         setFormData({

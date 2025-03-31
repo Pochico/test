@@ -1,4 +1,4 @@
-const TitleGroup = () => {
+export const TitleGroup = () => {
     return (
         <div className="title-group-container">
             <h1 className="title-group-title">SKIP HIRE</h1>
@@ -8,5 +8,4 @@ const TitleGroup = () => {
     )
 }
 
-export default TitleGroup
 

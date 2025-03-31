@@ -18,6 +18,10 @@ body {
   place-items: center;
 }
 
+.max-width-container {
+  max-width: 80%;
+}
+
 /* Text sizes */
 .text-sm {
   font-size: 14px;
@@ -169,11 +173,17 @@ body {
   display: flex;
   gap: 15px;
   align-items: flex-start;
+  border: 1px solid #1e3b8a;
 }
 
 .info-box ul {
   margin-left: 20px;
   margin-top: 5px;
+  color: #9Ca3Af;
+}
+
+.info-box svg {
+  color: #3c77f5;
 }
 
 .waste-types-grid {
@@ -302,10 +312,14 @@ body {
 }
 
 .breadcrumb-item.active {
-  color: #1a56db;
+  color: #fff;
 }
 
 .breadcrumb-item.completed {
+  color: #fff;
+}
+
+.breadcrumb-item.completed .breadcrumb-icon {
   color: #1a56db;
 }
 
@@ -319,7 +333,7 @@ body {
 
 .breadcrumb-connector {
   flex-grow: 1;
-  height: 2px;
+  height: 1px;
   background-color: #333;
   margin: 0 5px;
 }

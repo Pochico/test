@@ -1,6 +1,5 @@
 .skip-selection-step {
     width: 100%;
-    max-width: 1200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,8 +22,9 @@
 .skips-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 20px;
+    gap: 2rem;
     width: 100%;
+    margin-bottom: 6rem;
 }
 
 .skip-card {
@@ -33,13 +33,24 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: 0.2s;
     border: 2px solid transparent;
+}
+
+.skip-card.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 .skip-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.skip-card:hover img {
+    filter: contrast(1.2) brightness(1.1);
 }
 
 .skip-card.selected {
@@ -57,24 +68,22 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: .2s;
 }
 
-.skip-size-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: #1a56db;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-weight: bold;
-}
-
-.skip-details {
+.skip-card.skip-details {
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.skip-details-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
 }
 
 .skip-title {
@@ -91,17 +100,14 @@
     display: flex;
     align-items: baseline;
     gap: 5px;
-    margin: 10px 0;
+    color: #999;
 }
 
 .price-amount {
     font-size: 28px;
     font-weight: bold;
     color: #1a56db;
-}
-
-.price-period {
-    color: #999;
+    line-height: 1.6rem;
 }
 
 .select-skip-button {
@@ -116,11 +122,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s;
+    transition: 0.3s;
 }
 
 .select-skip-button:hover {
-    background-color: #1a1a1a;
+    background-color: #2e2e2e;
     border-color: #1a56db;
 }
 
@@ -152,39 +158,32 @@
     margin-top: 20px;
 }
 
-.buttons-container {
+.floating-buttons-container {
     display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-    width: 100%;
-    padding: 0 20px;
-}
-
-.back-button {
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 12px 25px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.continue-button {
-    background-color: #1a56db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 12px 25px;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 80%;
+    padding: 1rem;
+    background-color: #1c1c1c;
+    position: fixed;
+    bottom: -10rem;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8);
     align-items: center;
+    border: 1px solid #2e2e2e;
+    transition: .3s;
 }
 
-.continue-button:disabled {
-    background-color: #666;
-    cursor: not-allowed;
+.floating-buttons-container.show {
+    bottom: 1rem;
+}
+
+.floating-buttons-container .selected-skip-info {
+    text-align: right;
+    font-weight: bold;
+    color: #999;
+    position: absolute;
+    right: 1rem;
 }
 
 .arrow {

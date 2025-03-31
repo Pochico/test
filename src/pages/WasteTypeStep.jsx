@@ -1,14 +1,16 @@
 
+
 import { useState, useEffect } from "react"
 import { Breadcrumbs } from "../components/Breadcrumbs"
+import { WasteTypeCard } from "../components/WasteTypeCard"
 import { Info } from "lucide-react"
-import { HeavyWasteModal } from "../components/HeavyWasteModal.jsx"
-import { useAppState } from "../context/AppStateContext.jsx"
+import { HeavyWasteModal } from "../components/HeavyWasteModal"
+import { useAppState } from "../context/AppStateContext"
 
 export const WasteTypeStep = ({ onBackClick, onContinue, initialData = { general: [], heavy: [] } }) => {
     const { actions } = useAppState()
     const [selectedTypes, setSelectedTypes] = useState(initialData.general || [])
-    const [showHeavyWasteModal, setShowHeavyWasteModal] = useState(false)
+    const [showModal, setShowModal] = useState(false)
     const [selectedHeavyWastes, setSelectedHeavyWastes] = useState(initialData.heavy || [])
 
     useEffect(() => {
@@ -21,49 +23,46 @@ export const WasteTypeStep = ({ onBackClick, onContinue, initialData = { general
             setSelectedTypes(selectedTypes.filter((t) => t !== type))
         } else {
             setSelectedTypes([...selectedTypes, type])
-
-            if (type === "construction") {
-                setShowHeavyWasteModal(true)
-            }
         }
     }
 
     const isSelected = (type) => selectedTypes.includes(type)
 
-    const handleStepClick = (stepId) => {
-        if (stepId === 1) {
-            onBackClick()
-        }
-    }
-
     const handleHeavyWasteModalClose = () => {
-        setShowHeavyWasteModal(false)
+        setShowModal(false)
     }
 
     const handleHeavyWasteModalContinue = (selectedOptions) => {
         setSelectedHeavyWastes(selectedOptions)
-        setShowHeavyWasteModal(false)
+        setShowModal(false)
 
-        actions.setWasteTypes({
-            general: selectedTypes,
-            heavy: selectedOptions,
-        })
-    }
-
-    const handleContinue = () => {
         const allWasteTypes = {
             general: selectedTypes,
-            heavy: selectedHeavyWastes,
+            heavy: selectedOptions,
         }
+
         actions.setWasteTypes(allWasteTypes)
         onContinue(allWasteTypes)
     }
 
+    const handleContinueClick = () => {
+        if (selectedTypes.includes("garden") || selectedTypes.includes("construction")) {
+            setShowModal(true)
+        } else {
+            const allWasteTypes = {
+                general: selectedTypes,
+                heavy: selectedHeavyWastes,
+            }
+
+            actions.setWasteTypes(allWasteTypes)
+            onContinue(allWasteTypes)
+        }
+    }
+
     return (
         <div className="waste-type-step">
-            <Breadcrumbs currentStep={2} />
 
-            {showModal ? <HeavyWasteModal onClose={() => setShowModal(false)} onContinue={console.log('continue')} /> : null}
+            {showModal && <HeavyWasteModal onClose={handleHeavyWasteModalClose} onContinue={handleHeavyWasteModalContinue} />}
 
             <h1 className="title">Which type of waste best describes what you are disposing of?</h1>
 
@@ -71,7 +70,7 @@ export const WasteTypeStep = ({ onBackClick, onContinue, initialData = { general
                 <Info size={20} />
                 <div>
                     <p>You can select multiple waste types. Some items may require special handling:</p>
-                    <ul>
+                    <ul className="text-sm">
                         <li>Plasterboard and drywall materials</li>
                         <li>Heavy construction materials (soil, concrete, etc.)</li>
                     </ul>
@@ -90,9 +89,10 @@ export const WasteTypeStep = ({ onBackClick, onContinue, initialData = { general
                     Back
                 </button>
                 <button className="continue-button" disabled={selectedTypes.length === 0} onClick={handleContinueClick}>
-                    Continue
+                    Continue <span className="arrow">→</span>
                 </button>
             </div>
         </div>
     )
 }
+

@@ -1,0 +1,368 @@
+.payment-step {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.payment-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 70%;
+}
+
+/* Order Summary Styles */
+.order-summary-container {
+    background-color: #121212;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.order-summary-container h2 {
+    font-size: 24px;
+    margin: 0 0 25px 0;
+    font-weight: 600;
+}
+
+.summary-section {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #333;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.section-header h3 {
+    font-size: 18px;
+    margin: 0;
+    font-weight: 500;
+}
+
+.section-content {
+    padding-left: 30px;
+    color: #ccc;
+}
+
+.section-content p {
+    margin: 5px 0;
+}
+
+.date-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.order-summary-container .skip-details {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #333;
+}
+
+.skip-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.skip-period {
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.skip-price {
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vat-note {
+    font-size: 14px;
+    font-weight: normal;
+    color: #999;
+}
+
+.order-totals {
+    margin-top: 0;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: #999;
+}
+
+.grand-total {
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #333;
+    color: #fff;
+}
+
+/* Payment Column Styles */
+.payment-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Payment Details Styles */
+.payment-details-container {
+    background-color: #121212;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.payment-details-container h2 {
+    font-size: 24px;
+    margin: 0 0 25px 0;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.payment-methods {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.payment-method-button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #fff;
+}
+
+.payment-method-button.active {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+}
+
+.google-pay-icon {
+    font-weight: bold;
+    background-color: #fff;
+    color: #000;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.google-pay-logo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.payment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #ccc;
+}
+
+.card-input {
+    position: relative;
+}
+
+.card-input input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background-color: #1a1a1a;
+    color: #fff;
+    font-size: 16px;
+}
+
+.card-type-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.cvc-input {
+    position: relative;
+}
+
+.cvc-input input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background-color: #1a1a1a;
+    color: #fff;
+    font-size: 16px;
+}
+
+.cvc-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper select {
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background-color: #1a1a1a;
+    color: #fff;
+    font-size: 16px;
+    appearance: none;
+}
+
+.select-wrapper::after {
+    content: "";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #999;
+    pointer-events: none;
+}
+
+/* Google Pay Content Styles */
+.google-pay-content {
+    padding: 20px 0;
+}
+
+.google-pay-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #333;
+}
+
+.google-pay-header p {
+    margin: 0;
+    color: #ccc;
+}
+
+.google-pay-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #1a1a1a;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.google-pay-info p {
+    margin: 0;
+    color: #ccc;
+}
+
+.save-card-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.save-card-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+/* Payment Buttons Styles */
+.payment-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.complete-payment-button {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.complete-payment-button:hover {
+    background-color: #2563eb;
+}
+
+.complete-payment-button:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+}
+
+.back-button {
+    background-color: #1a1a1a;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 15px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.back-button:hover {
+    background-color: #252525;
+}
+
+@media (max-width: 768px) {
+    .payment-container {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}

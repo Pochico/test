@@ -1,8 +1,8 @@
 const API_BASE_URL = "https://app.wewantwaste.co.uk/api"
 
-export const fetchSkipsByLocation = async (postcode, area) => {
+export const fetchSkipsByLocation = async ( area) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/skips/by-location?postcode=${postcode}&area=${area}`)
+    const response = await fetch(`${API_BASE_URL}/skips/by-location?postcode=NR32&area=${area}`)
 
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`)
